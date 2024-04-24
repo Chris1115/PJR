@@ -1,0 +1,441 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{47FFEE99-AD95-40C5-973D-01942339FE88}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>PJR.FormMain</StartupObject>
+    <RootNamespace>PJR</RootNamespace>
+    <AssemblyName>PJR</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsFormsWithCustomSubMain</MyType>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>D:\Backoff\</OutputPath>
+    <DocumentationFile>PJR.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>PJR.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=10.2.3600.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=10.2.3600.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=10.2.3600.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=10.2.3600.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Backoff\CrystalDecisions.Windows.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="IDM.Fungsi, Version=3.2.11.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Backoff\IDM.Fungsi.dll</HintPath>
+    </Reference>
+    <Reference Include="IDM.InfoToko, Version=2.0.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Backoff\IDM.InfoToko.dll</HintPath>
+    </Reference>
+    <Reference Include="IDM.MySQL, Version=6.1.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Backoff\IDM.MySQL.dll</HintPath>
+    </Reference>
+    <Reference Include="IDM.Report, Version=1.3.35.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Backoff\IDM.Report.dll</HintPath>
+    </Reference>
+    <Reference Include="IDM.Sector, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Backoff\IDM.Sector.dll</HintPath>
+    </Reference>
+    <Reference Include="PosUtil, Version=3.0.20.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Backoff\PosUtil.dll</HintPath>
+    </Reference>
+    <Reference Include="Regedit, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Backoff\Regedit.DLL</HintPath>
+    </Reference>
+    <Reference Include="ScanFinger, Version=1.0.21.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Backoff\ScanFinger.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="zxing, Version=0.12.0.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Backoff\zxing.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AsyncSocket.vb" />
+    <Compile Include="ClsConnection.vb" />
+    <Compile Include="Controller\ClsAktivaController.vb" />
+    <Compile Include="Controller\ClsCekDisplayController.vb" />
+    <Compile Include="Controller\ClsDatabase.vb" />
+    <Compile Include="Controller\clsFinger.vb" />
+    <Compile Include="Controller\ClsFungsi.vb" />
+    <Compile Include="Controller\ClsHandheldController.vb" />
+    <Compile Include="Controller\ClsIntefaceWifi.vb" />
+    <Compile Include="Controller\ClsMonitoringPriceTagController.vb" />
+    <Compile Include="Controller\ClsPJRController.vb" />
+    <Compile Include="Controller\ClsPlanoController.vb" />
+    <Compile Include="Controller\ClsPriceTagController.vb" />
+    <Compile Include="Controller\ClsSOEDController.vb" />
+    <Compile Include="Controller\ClsSOICController.vb" />
+    <Compile Include="Controller\ClsTokoController.vb" />
+    <Compile Include="Controller\ClsUserController.vb" />
+    <Compile Include="Controller\ClsVirBacaprodController.vb" />
+    <Compile Include="Controller\Utility.vb" />
+    <Compile Include="FormMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.vb">
+      <DependentUpon>FormMain.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmApprovePJR.Designer.vb">
+      <DependentUpon>frmApprovePJR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmApprovePJR.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCbBox.Designer.vb">
+      <DependentUpon>FrmCbBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmCbBox.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCPJR.Designer.vb">
+      <DependentUpon>frmCPJR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmCPJR.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmListMutasi_PJR.Designer.vb">
+      <DependentUpon>FrmListMutasi_PJR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmListMutasi_PJR.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRegistPJR.Designer.vb">
+      <DependentUpon>FrmRegistPJR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRegistPJR.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTampilLBTD.Designer.vb">
+      <DependentUpon>frmTampilLBTD.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmTampilLBTD.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Model\ClsAktiva.vb" />
+    <Compile Include="Model\ClsBazar.vb" />
+    <Compile Include="Model\ClsBKL.vb" />
+    <Compile Include="Model\ClsBPB.vb" />
+    <Compile Include="Model\ClsBPBBKL.vb" />
+    <Compile Include="Model\ClsBPBNPS.vb" />
+    <Compile Include="Model\ClsCekDisplay.vb" />
+    <Compile Include="Model\ClsClient.vb" />
+    <Compile Include="Model\ClsHandheld.vb" />
+    <Compile Include="Model\ClsKesegaran.vb" />
+    <Compile Include="Model\ClsLogin.vb" />
+    <Compile Include="Model\clsMonitoringPriceTag.vb" />
+    <Compile Include="Model\ClsNPS.vb" />
+    <Compile Include="Model\ClsPJR.vb" />
+    <Compile Include="Model\ClsPJRProduk.vb" />
+    <Compile Include="Model\ClsPlanogram.vb" />
+    <Compile Include="Model\ClsPriceTag.vb" />
+    <Compile Include="Model\ClsSo.vb" />
+    <Compile Include="Model\ClsSOED.vb" />
+    <Compile Include="Model\ClsToko.vb" />
+    <Compile Include="Model\ClsUser.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Report\rptBarangSOBazar1.vb">
+      <DependentUpon>rptBarangSOBazar.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Report\rptBarangTidakTerdisplay1.vb">
+      <DependentUpon>rptBarangTidakTerdisplay.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Report\rptBarangTidakTerpajang1.vb">
+      <DependentUpon>rptBarangTidakTerpajang.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Report\rptFinalBarangTidakTerpajang1.vb">
+      <DependentUpon>rptFinalBarangTidakTerpajang.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Report\rptJadwalPJR1.vb">
+      <DependentUpon>rptJadwalPJR.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Report\rptJadwalPJRWaktu1.vb">
+      <DependentUpon>rptJadwalPJRWaktu.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Report\rptJadwalPJRWaktuAprove1.vb">
+      <DependentUpon>rptJadwalPJRWaktuAprove.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Report\rptLaporanJadwalPJR1.vb">
+      <DependentUpon>rptLaporanJadwalPJR.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Report\rptLaporanJadwalPJRperKary1.vb">
+      <DependentUpon>rptLaporanJadwalPJRperKary.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Report\rptLaporanJadwalPJRperRak1.vb">
+      <DependentUpon>rptLaporanJadwalPJRperRak.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Report\rptLaporanJadwalPJRperTanggal1.vb">
+      <DependentUpon>rptLaporanJadwalPJRperTanggal.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Report\rptListingDisplayProduk1.vb">
+      <DependentUpon>rptListingDisplayProduk.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Report\rptListingPeriodeRetur1.vb">
+      <DependentUpon>rptListingPeriodeRetur.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Report\rptListingRKCB1.vb">
+      <DependentUpon>rptListingRKCB.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Report\rptListingTurunPajang1.vb">
+      <DependentUpon>rptListingTurunPajang.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Report\rptListItemBAPJR_AS1.vb">
+      <DependentUpon>rptListItemBAPJR_AS.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Report\RptRekapRLBTD1.vb">
+      <DependentUpon>RptRekapRLBTD.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Report\rptTrendBarangTidakTerdisplay1.vb">
+      <DependentUpon>rptTrendBarangTidakTerdisplay.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmApprovePJR.resx">
+      <DependentUpon>frmApprovePJR.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCbBox.resx">
+      <DependentUpon>FrmCbBox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCPJR.resx">
+      <DependentUpon>frmCPJR.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmListMutasi_PJR.resx">
+      <DependentUpon>FrmListMutasi_PJR.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRegistPJR.resx">
+      <DependentUpon>FrmRegistPJR.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTampilLBTD.resx">
+      <DependentUpon>frmTampilLBTD.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\rptBarangSOBazar.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptBarangSOBazar1.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\rptBarangTidakTerdisplay.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptBarangTidakTerdisplay1.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\rptBarangTidakTerpajang.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptBarangTidakTerpajang1.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\rptFinalBarangTidakTerpajang.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptFinalBarangTidakTerpajang1.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\rptJadwalPJR.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptJadwalPJR1.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\rptJadwalPJRWaktu.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptJadwalPJRWaktu1.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\rptJadwalPJRWaktuAprove.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptJadwalPJRWaktuAprove1.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\rptLaporanJadwalPJR.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptLaporanJadwalPJR1.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\rptLaporanJadwalPJRperKary.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptLaporanJadwalPJRperKary1.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\rptLaporanJadwalPJRperRak.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptLaporanJadwalPJRperRak1.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\rptLaporanJadwalPJRperTanggal.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptLaporanJadwalPJRperTanggal1.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\rptListingDisplayProduk.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptListingDisplayProduk1.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\rptListingPeriodeRetur.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptListingPeriodeRetur1.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\rptListingRKCB.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptListingRKCB1.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\rptListingTurunPajang.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptListingTurunPajang1.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\rptListItemBAPJR_AS.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptListItemBAPJR_AS1.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\RptRekapRLBTD.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptRekapRLBTD1.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\rptTrendBarangTidakTerdisplay.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptTrendBarangTidakTerdisplay1.vb</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resource\logo_indomaret.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+</Project>
