@@ -12,7 +12,7 @@ Public Class ClsConnection
     Dim Baca As New Regedit.Reg
     Public Shared isSector As Boolean = True
     Public Shared sector As New IDM.Sector
-    Public Shared MyKey As String = "9104E3BE061EE564DD594597054285EE"
+    Public Shared MyKey As String = "89AE46EB70BC2A7B6A1BB141F34C0BC5"
 
     Public Sub New()
         Dim Scon As New MySqlConnection

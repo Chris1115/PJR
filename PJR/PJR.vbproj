@@ -113,33 +113,50 @@
     <Compile Include="AsyncSocket.vb" />
     <Compile Include="ClsConnection.vb" />
     <Compile Include="Controller\ClsAktivaController.vb" />
+    <Compile Include="Controller\ClsBPBController.vb" />
     <Compile Include="Controller\ClsCekDisplayController.vb" />
     <Compile Include="Controller\ClsDatabase.vb" />
     <Compile Include="Controller\clsFinger.vb" />
     <Compile Include="Controller\ClsFungsi.vb" />
     <Compile Include="Controller\ClsHandheldController.vb" />
     <Compile Include="Controller\ClsIntefaceWifi.vb" />
+    <Compile Include="Controller\ClsKesegaranController.vb" />
     <Compile Include="Controller\ClsMonitoringPriceTagController.vb" />
     <Compile Include="Controller\ClsPJRController.vb" />
     <Compile Include="Controller\ClsPlanoController.vb" />
     <Compile Include="Controller\ClsPriceTagController.vb" />
+    <Compile Include="Controller\ClsProdukController.vb" />
     <Compile Include="Controller\ClsSOEDController.vb" />
     <Compile Include="Controller\ClsSOICController.vb" />
     <Compile Include="Controller\ClsTokoController.vb" />
     <Compile Include="Controller\ClsUserController.vb" />
     <Compile Include="Controller\ClsVirBacaprodController.vb" />
     <Compile Include="Controller\Utility.vb" />
-    <Compile Include="FormMain.vb">
-      <SubType>Form</SubType>
+    <Compile Include="dsBarang.Designer.vb">
+      <DependentUpon>dsBarang.xsd</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Include="FormMain.Designer.vb">
-      <DependentUpon>FormMain.vb</DependentUpon>
+    <Compile Include="dsBarang.vb">
+      <SubType>code</SubType>
+      <DependentUpon>dsBarang.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Form.Designer.vb">
+      <DependentUpon>Form.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmApprovePJR.Designer.vb">
       <DependentUpon>frmApprovePJR.vb</DependentUpon>
     </Compile>
     <Compile Include="frmApprovePJR.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBAPJR.Designer.vb">
+      <DependentUpon>frmBAPJR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmBAPJR.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmCbBox.Designer.vb">
@@ -154,6 +171,12 @@
     <Compile Include="frmCPJR.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmLBTD.Designer.vb">
+      <DependentUpon>frmLBTD.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmLBTD.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FrmListMutasi_PJR.Designer.vb">
       <DependentUpon>FrmListMutasi_PJR.vb</DependentUpon>
     </Compile>
@@ -164,6 +187,24 @@
       <DependentUpon>FrmRegistPJR.vb</DependentUpon>
     </Compile>
     <Compile Include="FrmRegistPJR.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRKCB.Designer.vb">
+      <DependentUpon>FrmRKCB.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRKCB.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRptCP.designer.vb">
+      <DependentUpon>frmRptCP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmRptCP.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRptDCP.Designer.vb">
+      <DependentUpon>FrmRptDCP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRptDCP.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmTampilLBTD.Designer.vb">
@@ -226,6 +267,9 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Report\RptDCPToko.vb">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Report\rptFinalBarangTidakTerpajang1.vb">
       <DependentUpon>rptFinalBarangTidakTerpajang.rpt</DependentUpon>
@@ -319,11 +363,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="FormMain.resx">
-      <DependentUpon>FormMain.vb</DependentUpon>
+    <EmbeddedResource Include="Form.resx">
+      <DependentUpon>Form.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmApprovePJR.resx">
       <DependentUpon>frmApprovePJR.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBAPJR.resx">
+      <DependentUpon>frmBAPJR.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmCbBox.resx">
       <DependentUpon>FrmCbBox.vb</DependentUpon>
@@ -331,11 +378,23 @@
     <EmbeddedResource Include="frmCPJR.resx">
       <DependentUpon>frmCPJR.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmLBTD.resx">
+      <DependentUpon>frmLBTD.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmListMutasi_PJR.resx">
       <DependentUpon>FrmListMutasi_PJR.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmRegistPJR.resx">
       <DependentUpon>FrmRegistPJR.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRKCB.resx">
+      <DependentUpon>FrmRKCB.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRptCP.resx">
+      <DependentUpon>frmRptCP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRptDCP.resx">
+      <DependentUpon>FrmRptDCP.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTampilLBTD.resx">
       <DependentUpon>frmTampilLBTD.vb</DependentUpon>
@@ -420,6 +479,17 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="dsBarang.xsc">
+      <DependentUpon>dsBarang.xsd</DependentUpon>
+    </None>
+    <None Include="dsBarang.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsBarang.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="dsBarang.xss">
+      <DependentUpon>dsBarang.xsd</DependentUpon>
+    </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
