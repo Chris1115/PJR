@@ -502,13 +502,14 @@ Public Class FormMain
                         ClientArrival.SO.NoContainer = ""
                         DescBPB = ""
                         DtBPB_DCP = cBPB.GetTableCekPB("")
-                        DisplayGridBPB(DtBPB_DCP)
+                        'DisplayGridBPB(DtBPB_DCP)
                         HH_Display = TampilContainerClient(ClientArrival.SO.NoContainer, DescBPB)
                         Server_Display = TampilContainerServer(False, ClientArrival.SO.NoContainer, "", DescBPB)
                     Else
                         Dim i As Integer = 0
                         'mBPB = cSo.GetDeskripsiProdukBPB(tabel_name, container_no, client.SO.BarcodePlu)
-                        mBPB = cBPB.CekPluBarang(ClientArrival.SO.BarcodePlu, ClientArrival.SO.NoContainer, CbxKodeGudang.SelectedValue)
+                        'mBPB = cBPB.CekPluBarang(ClientArrival.SO.BarcodePlu, ClientArrival.SO.NoContainer, CbxKodeGudang.SelectedValue)
+                        mBPB = cBPB.CekPluBarang(ClientArrival.SO.BarcodePlu, ClientArrival.SO.NoContainer, "")
                         If mBPB.Desc.Trim <> "" Then
                             Dim DrRemove As DataRow = Nothing
                             Dim AddBox As Boolean = True
@@ -530,7 +531,7 @@ Public Class FormMain
                             If Not IsNothing(DrRemove) Then
                                 DtBPB_DCP.Rows.Remove(DrRemove)
                                 DtBPB_DCP.AcceptChanges()
-                                DisplayGridBPB(DtBPB_DCP)
+                                'DisplayGridBPB(DtBPB_DCP)
                             End If
                         End If
                         HH_Display = TampilDeskripsiClient(mBPB.Prdcd, mBPB.Desc, "", mBPB.Qty, "")
@@ -541,12 +542,13 @@ Public Class FormMain
                         ClientArrival.SO.NoContainer = ""
                         DescBPB = ""
                         DtBPBBKL_DCP = cBPB.GetTableCekPBBKL("", "")
-                        DisplayGridBPBBKL(DtBPBBKL_DCP)
+                        'DisplayGridBPBBKL(DtBPBBKL_DCP)
                         HH_Display = TampilContainerBKLClient(ClientArrival.SO.NoContainer, DescBPB)
                         Server_Display = TampilContainerBKLServer(False, ClientArrival.SO.NoContainer, "", DescBPB)
                     Else
                         Dim i As Integer = 0
-                        mBKL = cBPB.CekPluBarangBKL(ClientArrival.SO.BarcodePlu, CbxKodeGudang.SelectedValue)
+                        'mBKL = cBPB.CekPluBarangBKL(ClientArrival.SO.BarcodePlu, CbxKodeGudang.SelectedValue)
+                        mBKL = cBPB.CekPluBarangBKL(ClientArrival.SO.BarcodePlu, "")
                         If mBKL.BKL.Desc.Trim <> "" Then
                             Dim DrRemove As DataRow = Nothing
                             Dim AddBox As Boolean = True
@@ -568,7 +570,7 @@ Public Class FormMain
                             If Not IsNothing(DrRemove) Then
                                 DtBPBBKL_DCP.Rows.Remove(DrRemove)
                                 DtBPBBKL_DCP.AcceptChanges()
-                                DisplayGridBPBBKL(DtBPBBKL_DCP)
+                                'DisplayGridBPBBKL(DtBPBBKL_DCP)
                             End If
                         End If
                         ClientArrival.SO.Tgl_exp = ""
@@ -834,199 +836,199 @@ Public Class FormMain
 
                 Console.WriteLine("Q" & tabel_name & " | " & mainTTL3 & " | " & lokasi_so & " | " & ClientArrival.SO.isBADraft & " | " & ClientArrival.SO.isWtran)
 
-                If tabel_name = "dcp_boxplu" Then 'Penerimaan Barang
-                    mBPB = cBPB.RevisiQtyBarang(ClientArrival.SO.BarcodePlu, ClientArrival.SO.NoContainer, CbxKodeGudang.SelectedValue, ClientArrival.SO.QTYInput)
-                    HH_Display = TampilDeskripsiClient(mBPB.Prdcd, mBPB.Desc, "", mBPB.Qty, "")
-                    Server_Display = TampilDeskripsiServer(mBPB.Prdcd, mBPB.Desc, "", mBPB.Qty, "")
+                '                If tabel_name = "dcp_boxplu" Then 'Penerimaan Barang
+                '                    mBPB = cBPB.RevisiQtyBarang(ClientArrival.SO.BarcodePlu, ClientArrival.SO.NoContainer, CbxKodeGudang.SelectedValue, ClientArrival.SO.QTYInput)
+                '                    HH_Display = TampilDeskripsiClient(mBPB.Prdcd, mBPB.Desc, "", mBPB.Qty, "")
+                '                    Server_Display = TampilDeskripsiServer(mBPB.Prdcd, mBPB.Desc, "", mBPB.Qty, "")
 
-                ElseIf tabel_name.ToUpper.Contains("BPBBKL_WDCP") Then 'Penerimaan Barang BKL
-                    mBKL = cBPB.cekQTYBKL(parameter_docno, ClientArrival.SO.QTYInput, ClientArrival.SO.BarcodePlu, CbxKodeGudang.SelectedValue, ClientArrival.SO.Tgl_exp, namauser)
+                '                ElseIf tabel_name.ToUpper.Contains("BPBBKL_WDCP") Then 'Penerimaan Barang BKL
+                '                    mBKL = cBPB.cekQTYBKL(parameter_docno, ClientArrival.SO.QTYInput, ClientArrival.SO.BarcodePlu, CbxKodeGudang.SelectedValue, ClientArrival.SO.Tgl_exp, namauser)
 
-                    StatusQTY = mBKL.StatusQTY
-                    If StatusQTY = 1 Then ' Tidak ditemukan
-                        HH_Display = TampilDeskripsiBKL(mBKL.BKL.Prdcd, mBKL.BKL.Desc, "", ClientArrival.SO.Tgl_exp, "", "", StatusQTY, "",, mBKL.BKL.fraction_pcs)
-                        Server_Display = TampilDeskripsiBKLServer(mBKL.BKL.Prdcd, mBKL.BKL.Desc, "", ClientArrival.SO.Tgl_exp, mBKL.Feedback, mBKL.BKL.fraction_pcs)
-                    ElseIf StatusQTY = 3 Then 'QTY melebihi
-                        HH_Display = TampilDeskripsiBKL(mBKL.BKL.Prdcd, mBKL.BKL.Desc, "", ClientArrival.SO.Tgl_exp, "", "", StatusQTY, "", mBKL.BKL.sjQty, mBKL.BKL.fraction_pcs)
-                        Server_Display = TampilDeskripsiBKLServer(mBKL.BKL.Prdcd, mBKL.BKL.Desc, "", "", mBKL.Feedback, mBKL.BKL.fraction_pcs)
-                    ElseIf StatusQTY = 4 Then
-                        HH_Display = TampilDeskripsiBKL(mBKL.BKL.Prdcd, mBKL.BKL.Desc, "", ClientArrival.SO.Tgl_exp, "", "", StatusQTY, "",, mBKL.BKL.fraction_pcs)
-                        Server_Display = TampilDeskripsiBKLServer(mBKL.BKL.Prdcd, mBKL.BKL.Desc, "", "", mBKL.Feedback, mBKL.BKL.fraction_pcs)
-                    ElseIf StatusQTY = 5 Then
-                        HH_Display = TampilDeskripsiBKL(mBKL.BKL.Prdcd, mBKL.BKL.Desc, "", ClientArrival.SO.Tgl_exp, "", "", StatusQTY, "",, mBKL.BKL.fraction_pcs)
-                        Server_Display = TampilDeskripsiBKLServer(mBKL.BKL.Prdcd, mBKL.BKL.Desc, "", "", mBKL.Feedback, mBKL.BKL.fraction_pcs)
-                    Else 'Berhasil
-                        HH_Display = TampilDeskripsiBKL(mBKL.BKL.Prdcd, mBKL.BKL.Desc, ClientArrival.SO.QTYInput, ClientArrival.SO.Tgl_exp, "Berhasil qty= " & mBKL.BKL.totalqty, "UPDATE QTY", StatusQTY, "",, mBKL.BKL.fraction_pcs)
-                        Server_Display = TampilDeskripsiBKLServer(mBKL.BKL.Prdcd, mBKL.BKL.Desc, ClientArrival.SO.QTYInput, ClientArrival.SO.Tgl_exp, "Berhasil qty= " & mBKL.BKL.totalqty, mBKL.BKL.fraction_pcs)
-                    End If
-                    'DIRECT SHIPMENT MEMO 1029
-                ElseIf tabel_name.ToUpper.Contains("BPBNPS_WDCP") Then 'Penerimaan Barang NPS
-                    mBPBNPS = cBPB.cekQTYNPS(ClientArrival.SO.QTYInput, ClientArrival.SO.BarcodePlu, CbxKodeGudang.SelectedValue, ClientArrival.SO.Tgl_exp, namauser)
+                '                    StatusQTY = mBKL.StatusQTY
+                '                    If StatusQTY = 1 Then ' Tidak ditemukan
+                '                        HH_Display = TampilDeskripsiBKL(mBKL.BKL.Prdcd, mBKL.BKL.Desc, "", ClientArrival.SO.Tgl_exp, "", "", StatusQTY, "",, mBKL.BKL.fraction_pcs)
+                '                        Server_Display = TampilDeskripsiBKLServer(mBKL.BKL.Prdcd, mBKL.BKL.Desc, "", ClientArrival.SO.Tgl_exp, mBKL.Feedback, mBKL.BKL.fraction_pcs)
+                '                    ElseIf StatusQTY = 3 Then 'QTY melebihi
+                '                        HH_Display = TampilDeskripsiBKL(mBKL.BKL.Prdcd, mBKL.BKL.Desc, "", ClientArrival.SO.Tgl_exp, "", "", StatusQTY, "", mBKL.BKL.sjQty, mBKL.BKL.fraction_pcs)
+                '                        Server_Display = TampilDeskripsiBKLServer(mBKL.BKL.Prdcd, mBKL.BKL.Desc, "", "", mBKL.Feedback, mBKL.BKL.fraction_pcs)
+                '                    ElseIf StatusQTY = 4 Then
+                '                        HH_Display = TampilDeskripsiBKL(mBKL.BKL.Prdcd, mBKL.BKL.Desc, "", ClientArrival.SO.Tgl_exp, "", "", StatusQTY, "",, mBKL.BKL.fraction_pcs)
+                '                        Server_Display = TampilDeskripsiBKLServer(mBKL.BKL.Prdcd, mBKL.BKL.Desc, "", "", mBKL.Feedback, mBKL.BKL.fraction_pcs)
+                '                    ElseIf StatusQTY = 5 Then
+                '                        HH_Display = TampilDeskripsiBKL(mBKL.BKL.Prdcd, mBKL.BKL.Desc, "", ClientArrival.SO.Tgl_exp, "", "", StatusQTY, "",, mBKL.BKL.fraction_pcs)
+                '                        Server_Display = TampilDeskripsiBKLServer(mBKL.BKL.Prdcd, mBKL.BKL.Desc, "", "", mBKL.Feedback, mBKL.BKL.fraction_pcs)
+                '                    Else 'Berhasil
+                '                        HH_Display = TampilDeskripsiBKL(mBKL.BKL.Prdcd, mBKL.BKL.Desc, ClientArrival.SO.QTYInput, ClientArrival.SO.Tgl_exp, "Berhasil qty= " & mBKL.BKL.totalqty, "UPDATE QTY", StatusQTY, "",, mBKL.BKL.fraction_pcs)
+                '                        Server_Display = TampilDeskripsiBKLServer(mBKL.BKL.Prdcd, mBKL.BKL.Desc, ClientArrival.SO.QTYInput, ClientArrival.SO.Tgl_exp, "Berhasil qty= " & mBKL.BKL.totalqty, mBKL.BKL.fraction_pcs)
+                '                    End If
+                '                    'DIRECT SHIPMENT MEMO 1029
+                '                ElseIf tabel_name.ToUpper.Contains("BPBNPS_WDCP") Then 'Penerimaan Barang NPS
+                '                    mBPBNPS = cBPB.cekQTYNPS(ClientArrival.SO.QTYInput, ClientArrival.SO.BarcodePlu, CbxKodeGudang.SelectedValue, ClientArrival.SO.Tgl_exp, namauser)
 
-                    StatusQTY = mBPBNPS.StatusQTY
+                '                    StatusQTY = mBPBNPS.StatusQTY
 
-                    If StatusQTY = 1 Then ' Tidak ditemukan
-                        HH_Display = TampilDeskripsiNPS(mBPBNPS.NPS.Prdcd, mBPBNPS.NPS.Desc, "", ClientArrival.SO.Tgl_exp, "", "", StatusQTY, "")
-                        Server_Display = TampilDeskripsiBKLServer(mBPBNPS.NPS.Prdcd, mBPBNPS.NPS.Desc, "", ClientArrival.SO.Tgl_exp, mBPBNPS.Feedback)
-                    ElseIf StatusQTY = 3 Then 'QTY melebihi
-                        HH_Display = TampilDeskripsiNPS(mBPBNPS.NPS.Prdcd, mBPBNPS.NPS.Desc, "", ClientArrival.SO.Tgl_exp, "", "", StatusQTY, "", mBPBNPS.NPS.sjQty)
-                        Server_Display = TampilDeskripsiBKLServer(mBPBNPS.NPS.Prdcd, mBPBNPS.NPS.Desc, "", "", mBPBNPS.Feedback)
-                    ElseIf StatusQTY = 4 Then
-                        HH_Display = TampilDeskripsiNPS(mBPBNPS.NPS.Prdcd, mBPBNPS.NPS.Desc, "", ClientArrival.SO.Tgl_exp, "", "", StatusQTY, "")
-                        Server_Display = TampilDeskripsiBKLServer(mBPBNPS.NPS.Prdcd, mBPBNPS.NPS.Desc, "", "", mBPBNPS.Feedback)
-                    ElseIf StatusQTY = 5 Then
-                        HH_Display = TampilDeskripsiNPS(mBPBNPS.NPS.Prdcd, mBPBNPS.NPS.Desc, "", ClientArrival.SO.Tgl_exp, "", "", StatusQTY, "")
-                        Server_Display = TampilDeskripsiBKLServer(mBPBNPS.NPS.Prdcd, mBPBNPS.NPS.Desc, "", "", mBPBNPS.Feedback)
-                    Else 'Berhasil
-                        HH_Display = TampilDeskripsiNPS(mBPBNPS.NPS.Prdcd, mBPBNPS.NPS.Desc, ClientArrival.SO.QTYInput, ClientArrival.SO.Tgl_exp, "Berhasil qty= " & mBPBNPS.NPS.totalqty, "UPDATE QTY", StatusQTY, "")
-                        Server_Display = TampilDeskripsiBKLServer(mBPBNPS.NPS.Prdcd, mBPBNPS.NPS.Desc, ClientArrival.SO.QTYInput, ClientArrival.SO.Tgl_exp, "Berhasil qty= " & mBPBNPS.NPS.totalqty)
-                    End If
+                '                    If StatusQTY = 1 Then ' Tidak ditemukan
+                '                        HH_Display = TampilDeskripsiNPS(mBPBNPS.NPS.Prdcd, mBPBNPS.NPS.Desc, "", ClientArrival.SO.Tgl_exp, "", "", StatusQTY, "")
+                '                        Server_Display = TampilDeskripsiBKLServer(mBPBNPS.NPS.Prdcd, mBPBNPS.NPS.Desc, "", ClientArrival.SO.Tgl_exp, mBPBNPS.Feedback)
+                '                    ElseIf StatusQTY = 3 Then 'QTY melebihi
+                '                        HH_Display = TampilDeskripsiNPS(mBPBNPS.NPS.Prdcd, mBPBNPS.NPS.Desc, "", ClientArrival.SO.Tgl_exp, "", "", StatusQTY, "", mBPBNPS.NPS.sjQty)
+                '                        Server_Display = TampilDeskripsiBKLServer(mBPBNPS.NPS.Prdcd, mBPBNPS.NPS.Desc, "", "", mBPBNPS.Feedback)
+                '                    ElseIf StatusQTY = 4 Then
+                '                        HH_Display = TampilDeskripsiNPS(mBPBNPS.NPS.Prdcd, mBPBNPS.NPS.Desc, "", ClientArrival.SO.Tgl_exp, "", "", StatusQTY, "")
+                '                        Server_Display = TampilDeskripsiBKLServer(mBPBNPS.NPS.Prdcd, mBPBNPS.NPS.Desc, "", "", mBPBNPS.Feedback)
+                '                    ElseIf StatusQTY = 5 Then
+                '                        HH_Display = TampilDeskripsiNPS(mBPBNPS.NPS.Prdcd, mBPBNPS.NPS.Desc, "", ClientArrival.SO.Tgl_exp, "", "", StatusQTY, "")
+                '                        Server_Display = TampilDeskripsiBKLServer(mBPBNPS.NPS.Prdcd, mBPBNPS.NPS.Desc, "", "", mBPBNPS.Feedback)
+                '                    Else 'Berhasil
+                '                        HH_Display = TampilDeskripsiNPS(mBPBNPS.NPS.Prdcd, mBPBNPS.NPS.Desc, ClientArrival.SO.QTYInput, ClientArrival.SO.Tgl_exp, "Berhasil qty= " & mBPBNPS.NPS.totalqty, "UPDATE QTY", StatusQTY, "")
+                '                        Server_Display = TampilDeskripsiBKLServer(mBPBNPS.NPS.Prdcd, mBPBNPS.NPS.Desc, ClientArrival.SO.QTYInput, ClientArrival.SO.Tgl_exp, "Berhasil qty= " & mBPBNPS.NPS.totalqty)
+                '                    End If
 
-                    'revisi Memo No. 959 - CPS - 20
-                    '13/10/2020
-                    'Cek Kesegaran
-                ElseIf tabel_name = "CekKesegaran" Then
+                '                    'revisi Memo No. 959 - CPS - 20
+                '                    '13/10/2020
+                '                    'Cek Kesegaran
+                '                ElseIf tabel_name = "CekKesegaran" Then
 
-                    mKesegaran = cKesegaran.GetDeskripsiKesegaran(tabel_name, ClientArrival.SO.BarcodePlu, cmbModis.Text, ClientArrival.Login.User, ClientArrival.SO.QTYInput)
-                    If mKesegaran.Desc = "QTY melebihi LPP!" Then
-                        HH_Display = TampilKesegaranClient("", mKesegaran.Desc, "", "")
-                        Server_Display = TampilKesegaranServer("", mKesegaran.Desc, "", "")
-                    Else
+                '                    mKesegaran = cKesegaran.GetDeskripsiKesegaran(tabel_name, ClientArrival.SO.BarcodePlu, cmbModis.Text, ClientArrival.Login.User, ClientArrival.SO.QTYInput)
+                '                    If mKesegaran.Desc = "QTY melebihi LPP!" Then
+                '                        HH_Display = TampilKesegaranClient("", mKesegaran.Desc, "", "")
+                '                        Server_Display = TampilKesegaranServer("", mKesegaran.Desc, "", "")
+                '                    Else
 
-                        HH_Display = TampilKesegaranClient("", "", "", "")
-                        Server_Display = TampilKesegaranServer("", "", "", "")
-                    End If
+                '                        HH_Display = TampilKesegaranClient("", "", "", "")
+                '                        Server_Display = TampilKesegaranServer("", "", "", "")
+                '                    End If
 
-                ElseIf tabel_name.ToUpper.Contains("OA") Then 'Stock Opname Aktiva
-                    'revisi Memo No. 208 - CPS - 20
-                    '13/10/2020
-                    mAktiva = cAktiva.GetDeskripsiAktiva(tabel_name, ClientArrival.SO.BarcodePlu, Toko, ClientArrival.SO.QTYInput)
+                '                ElseIf tabel_name.ToUpper.Contains("OA") Then 'Stock Opname Aktiva
+                '                    'revisi Memo No. 208 - CPS - 20
+                '                    '13/10/2020
+                '                    mAktiva = cAktiva.GetDeskripsiAktiva(tabel_name, ClientArrival.SO.BarcodePlu, Toko, ClientArrival.SO.QTYInput)
 
-                    If mAktiva.statusQty = True And Not mAktiva.Deskripsi2.Contains("AT baru !") Then
-                        mAktiva = cAktiva.UpdateQtyProduk(tabel_name, ClientArrival.SO.BarcodePlu, ClientArrival.SO.Deskripsi, ClientArrival.SO.QTYInput, 0, ClientArrival.SO.statusBarcode, Toko)
-                        HH_Display = TampilDeskripsiClient(mAktiva.NSeri, mAktiva.Deskripsi, "", "", "", mAktiva.Deskripsi2)
-                        Server_Display = TampilDeskripsiServer(mAktiva.NSeri, mAktiva.Deskripsi, "", "", "", mAktiva.Deskripsi2)
-                    Else
-                        If mAktiva.Deskripsi2.Contains("AT baru !") Then
-                            mAktiva.statusQty = False
-                        End If
-                        If ClientArrival.SO.QTYInput > mAktiva.QtyMax And mAktiva.statusQty = True Then
-                            mAktiva = cAktiva.UpdateQtyProduk(tabel_name, ClientArrival.SO.BarcodePlu, ClientArrival.SO.Deskripsi, ClientArrival.SO.QTYInput, 0, ClientArrival.SO.statusBarcode, Toko)
-                            HH_Display = TampilDeskripsiClient(mAktiva.NSeri, mAktiva.Deskripsi, "", "", "", mAktiva.Deskripsi2)
-                            Server_Display = TampilDeskripsiServer(mAktiva.NSeri, mAktiva.Deskripsi, "", "", "", mAktiva.Deskripsi2)
-                        Else
-                            HH_Display = TampilDeskripsiClient(mAktiva.NSeri, mAktiva.Deskripsi, mAktiva.statusQty.ToString, ClientArrival.SO.QTYInput, "", mAktiva.Deskripsi2)
-                            Server_Display = TampilDeskripsiServer(mAktiva.NSeri, mAktiva.Deskripsi, mAktiva.statusQty.ToString, ClientArrival.SO.QTYInput, "", mAktiva.Deskripsi2)
-                        End If
-                    End If
+                '                    If mAktiva.statusQty = True And Not mAktiva.Deskripsi2.Contains("AT baru !") Then
+                '                        mAktiva = cAktiva.UpdateQtyProduk(tabel_name, ClientArrival.SO.BarcodePlu, ClientArrival.SO.Deskripsi, ClientArrival.SO.QTYInput, 0, ClientArrival.SO.statusBarcode, Toko)
+                '                        HH_Display = TampilDeskripsiClient(mAktiva.NSeri, mAktiva.Deskripsi, "", "", "", mAktiva.Deskripsi2)
+                '                        Server_Display = TampilDeskripsiServer(mAktiva.NSeri, mAktiva.Deskripsi, "", "", "", mAktiva.Deskripsi2)
+                '                    Else
+                '                        If mAktiva.Deskripsi2.Contains("AT baru !") Then
+                '                            mAktiva.statusQty = False
+                '                        End If
+                '                        If ClientArrival.SO.QTYInput > mAktiva.QtyMax And mAktiva.statusQty = True Then
+                '                            mAktiva = cAktiva.UpdateQtyProduk(tabel_name, ClientArrival.SO.BarcodePlu, ClientArrival.SO.Deskripsi, ClientArrival.SO.QTYInput, 0, ClientArrival.SO.statusBarcode, Toko)
+                '                            HH_Display = TampilDeskripsiClient(mAktiva.NSeri, mAktiva.Deskripsi, "", "", "", mAktiva.Deskripsi2)
+                '                            Server_Display = TampilDeskripsiServer(mAktiva.NSeri, mAktiva.Deskripsi, "", "", "", mAktiva.Deskripsi2)
+                '                        Else
+                '                            HH_Display = TampilDeskripsiClient(mAktiva.NSeri, mAktiva.Deskripsi, mAktiva.statusQty.ToString, ClientArrival.SO.QTYInput, "", mAktiva.Deskripsi2)
+                '                            Server_Display = TampilDeskripsiServer(mAktiva.NSeri, mAktiva.Deskripsi, mAktiva.statusQty.ToString, ClientArrival.SO.QTYInput, "", mAktiva.Deskripsi2)
+                '                        End If
+                '                    End If
 
-                ElseIf tabel_name.StartsWith("SZ") Then 'SO Bazar
-                    Dim statusExp As String = ""
-                    statusExp = mBZR.StatusExp
+                '                ElseIf tabel_name.StartsWith("SZ") Then 'SO Bazar
+                '                    Dim statusExp As String = ""
+                '                    statusExp = mBZR.StatusExp
 
-                    HH_Display = TampilDeskripsiBazar("", "", "", "", "", "", "", "")
-                    Server_Display = TampilDeskripsiBKLServer("", "", "", "", "")
+                '                    HH_Display = TampilDeskripsiBazar("", "", "", "", "", "", "", "")
+                '                    Server_Display = TampilDeskripsiBKLServer("", "", "", "", "")
 
-                ElseIf tabel_name.StartsWith("SE") Then 'SO Expired Date
-                    Dim qtyInput As Integer = SocketData.Substring(0, SocketData.Length - 1)
+                '                ElseIf tabel_name.StartsWith("SE") Then 'SO Expired Date
+                '                    Dim qtyInput As Integer = SocketData.Substring(0, SocketData.Length - 1)
 
-                    mED = cED.SimpanQty_ED(tabel_name, ClientArrival.SOED.PRDCD, ClientArrival.SOED.ExpDate, qtyInput, ClientArrival.SOED.noPropED)
+                '                    mED = cED.SimpanQty_ED(tabel_name, ClientArrival.SOED.PRDCD, ClientArrival.SOED.ExpDate, qtyInput, ClientArrival.SOED.noPropED)
 
-                    If ClientArrival.SOED.Feedback = "4" Then
-                        HH_Display = TampilDeskripsiExpired("", "", "", "", "", mED.Feedback)
-                        Server_Display = TampilDeskripsiExpiredServer("", "", "", "", "", mED.Feedback)
-                    Else
-                        HH_Display = TampilDeskripsiExpired("", mED.Deskripsi, "", "", "", mED.Feedback)
-                        Server_Display = TampilDeskripsiExpiredServer("", mED.Deskripsi, "", "", "", mED.Feedback)
-                    End If
+                '                    If ClientArrival.SOED.Feedback = "4" Then
+                '                        HH_Display = TampilDeskripsiExpired("", "", "", "", "", mED.Feedback)
+                '                        Server_Display = TampilDeskripsiExpiredServer("", "", "", "", "", mED.Feedback)
+                '                    Else
+                '                        HH_Display = TampilDeskripsiExpired("", mED.Deskripsi, "", "", "", mED.Feedback)
+                '                        Server_Display = TampilDeskripsiExpiredServer("", mED.Deskripsi, "", "", "", mED.Feedback)
+                '                    End If
 
-                ElseIf tabel_name = "CekDisplay" Then '1392/CPS/20
-                    cCekDisplay.SimpanQTYCekDisplay("CekDisplay", ClientArrival.SO.BarcodePlu, ClientArrival.SO.QTYInput, cmbModis.Text, ClientArrival.Login.User.ID, nama_cekdisplay, jabatan_cekdisplay)
-                    HH_Display = TampilCekDisplayClient("", "", "", "1")
-                    Server_Display = TampilCekDisplayServer("", "", "")
+                '                ElseIf tabel_name = "CekDisplay" Then '1392/CPS/20
+                '                    cCekDisplay.SimpanQTYCekDisplay("CekDisplay", ClientArrival.SO.BarcodePlu, ClientArrival.SO.QTYInput, cmbModis.Text, ClientArrival.Login.User.ID, nama_cekdisplay, jabatan_cekdisplay)
+                '                    HH_Display = TampilCekDisplayClient("", "", "", "1")
+                '                    Server_Display = TampilCekDisplayServer("", "", "")
 
-                Else 'Stock Opname 
-                    Dim temp_ttlQTY As Double
+                '                Else 'Stock Opname 
+                '                    Dim temp_ttlQTY As Double
 
-                    If ClientArrival.SO.QTYInput = 0 Then
-                        ClientArrival.SO.QTYToko = 0
-                        ClientArrival.SO.QTYGudang = 0
-                        ClientArrival.SO.QTYTotal = 0
-                    End If
+                '                    If ClientArrival.SO.QTYInput = 0 Then
+                '                        ClientArrival.SO.QTYToko = 0
+                '                        ClientArrival.SO.QTYGudang = 0
+                '                        ClientArrival.SO.QTYTotal = 0
+                '                    End If
 
-                    If jenis_so.ToLower = "tahunan" And mode_run = "E" Then
-                        'Setiap Device bisa beda lokasi
-                        Dim clsHandheld As New ClsHandheld
-                        Dim clsHandheldController As New ClsHandheldController
+                '                    If jenis_so.ToLower = "tahunan" And mode_run = "E" Then
+                '                        'Setiap Device bisa beda lokasi
+                '                        Dim clsHandheld As New ClsHandheld
+                '                        Dim clsHandheldController As New ClsHandheldController
 
-                        clsHandheld.ipAddress = IpAddress.Split(":")(0)
-                        clsHandheld.socketID = SocketID
-                        lokasi_so = clsHandheldController.getLokasiSO(clsHandheld)
-                    End If
+                '                        clsHandheld.ipAddress = IpAddress.Split(":")(0)
+                '                        clsHandheld.socketID = SocketID
+                '                        lokasi_so = clsHandheldController.getLokasiSO(clsHandheld)
+                '                    End If
 
-                    'Revisi MEMO 1230 SOIC
-                    If tabel_name.ToUpper.Contains("SB") And mainTTL3 And lokasi_so = "Barang Rusak" Then
-                        Dim clsSOIC As New ClsSOICController
-                        Dim alasan As String
-                        Dim tabelTTL3 As String
+                '                    'Revisi MEMO 1230 SOIC
+                '                    If tabel_name.ToUpper.Contains("SB") And mainTTL3 And lokasi_so = "Barang Rusak" Then
+                '                        Dim clsSOIC As New ClsSOICController
+                '                        Dim alasan As String
+                '                        Dim tabelTTL3 As String
 
-                        If ClientArrival.SO.isBADraft Or ClientArrival.SO.isWtran Then
-                            If ClientArrival.SO.qtyReturExpired = "" Then
-                                ClientArrival.SO.qtyReturExpired = ClientArrival.SO.QTYInput
-                                alasan = "Barang Expired"
-                            ElseIf ClientArrival.SO.qtyReturKemasan = "" Then
-                                ClientArrival.SO.qtyReturKemasan = ClientArrival.SO.QTYInput
-                                alasan = "Kemasan Rusak"
-                            Else
-                                ClientArrival.SO.qtyReturDigigit = ClientArrival.SO.QTYInput
-                                alasan = "Digigit Tikus/Serangga"
-                            End If
+                '                        If ClientArrival.SO.isBADraft Or ClientArrival.SO.isWtran Then
+                '                            If ClientArrival.SO.qtyReturExpired = "" Then
+                '                                ClientArrival.SO.qtyReturExpired = ClientArrival.SO.QTYInput
+                '                                alasan = "Barang Expired"
+                '                            ElseIf ClientArrival.SO.qtyReturKemasan = "" Then
+                '                                ClientArrival.SO.qtyReturKemasan = ClientArrival.SO.QTYInput
+                '                                alasan = "Kemasan Rusak"
+                '                            Else
+                '                                ClientArrival.SO.qtyReturDigigit = ClientArrival.SO.QTYInput
+                '                                alasan = "Digigit Tikus/Serangga"
+                '                            End If
 
-                            If ClientArrival.SO.isBADraft Then
-                                tabelTTL3 = "ba_draft"
-                            Else
-                                tabelTTL3 = "wtran"
-                            End If
+                '                            If ClientArrival.SO.isBADraft Then
+                '                                tabelTTL3 = "ba_draft"
+                '                            Else
+                '                                tabelTTL3 = "wtran"
+                '                            End If
 
-                            clsSOIC.insertOrUpdate_barangRusak(ClientArrival.SO.PRDCD, ClientArrival.SO.QTYInput, tabelTTL3, alasan)
+                '                            clsSOIC.insertOrUpdate_barangRusak(ClientArrival.SO.PRDCD, ClientArrival.SO.QTYInput, tabelTTL3, alasan)
 
-                            If ClientArrival.SO.qtyReturExpired = "" Or ClientArrival.SO.qtyReturKemasan = "" Or ClientArrival.SO.qtyReturDigigit = "" Then
-                                GoTo NEXT_QTY
-                            Else
-                                temp_ttlQTY = Double.Parse(ClientArrival.SO.qtyReturExpired) + Double.Parse(ClientArrival.SO.qtyReturKemasan) + Double.Parse(ClientArrival.SO.qtyReturDigigit)
-                                ClientArrival.SO.QTYInput = temp_ttlQTY.ToString
-                            End If
-                        End If
-                    End If
+                '                            If ClientArrival.SO.qtyReturExpired = "" Or ClientArrival.SO.qtyReturKemasan = "" Or ClientArrival.SO.qtyReturDigigit = "" Then
+                '                                GoTo NEXT_QTY
+                '                            Else
+                '                                temp_ttlQTY = Double.Parse(ClientArrival.SO.qtyReturExpired) + Double.Parse(ClientArrival.SO.qtyReturKemasan) + Double.Parse(ClientArrival.SO.qtyReturDigigit)
+                '                                ClientArrival.SO.QTYInput = temp_ttlQTY.ToString
+                '                            End If
+                '                        End If
+                '                    End If
 
-                    'jika input qty 0 tampilkan deskripsi sebelumnya
-                    If ClientArrival.SO.QTYInput = "0" Then
-NEXT_QTY:
-                        If lokasi_so = "Toko" Then
-                            If tabel_name.ToUpper.Contains("SP") Then
-                                HH_Display = TampilDeskripsiClient(ClientArrival.SO.BarcodePlu, ClientArrival.SO.Deskripsi, ClientArrival.SO.Rak, ClientArrival.SO.QTYToko, ClientArrival.SO.QTYCom)
-                                Server_Display = TampilDeskripsiServer(ClientArrival.SO.BarcodePlu, ClientArrival.SO.Deskripsi, ClientArrival.SO.Rak, ClientArrival.SO.QTYToko, ClientArrival.SO.QTYCom)
-                            Else
-                                HH_Display = TampilDeskripsiClient(ClientArrival.SO.BarcodePlu, ClientArrival.SO.Deskripsi, ClientArrival.SO.Rak, ClientArrival.SO.QTYToko, ClientArrival.SO.QTYCom)
-                                Server_Display = TampilDeskripsiServer(ClientArrival.SO.BarcodePlu, ClientArrival.SO.Deskripsi, ClientArrival.SO.Rak, "", ClientArrival.SO.QTYCom)
-                            End If
-                        ElseIf lokasi_so = "Gudang" Then
-                            HH_Display = TampilDeskripsiClient(ClientArrival.SO.BarcodePlu, ClientArrival.SO.Deskripsi, ClientArrival.SO.Rak, ClientArrival.SO.QTYGudang, ClientArrival.SO.QTYCom)
-                            Server_Display = TampilDeskripsiServer(ClientArrival.SO.BarcodePlu, ClientArrival.SO.Deskripsi, ClientArrival.SO.Rak, "", ClientArrival.SO.QTYCom)
-                        Else
-                            HH_Display = TampilClientSOICTTL3(ClientArrival.SO.BarcodePlu, ClientArrival.SO.Deskripsi, ClientArrival.SO.qtyReturExpired, ClientArrival.SO.qtyReturKemasan, ClientArrival.SO.qtyReturDigigit)
-                            Server_Display = TampilServerSOICTTL3(ClientArrival.SO.BarcodePlu, ClientArrival.SO.Deskripsi, ClientArrival.SO.qtyReturExpired, ClientArrival.SO.qtyReturKemasan, ClientArrival.SO.qtyReturDigigit)
-                        End If
-                    Else
-                        If tabel_name.ToUpper.Contains("SP") Then
-                            HH_Display = TampilDeskripsiClient("", "", "", "", "")
-                            Server_Display = TampilDeskripsiServer("", "", "", "", "")
-                        Else
-                            HH_Display = TampilDeskripsiClient("", "", "", "", "")
-                            Server_Display = TampilDeskripsiServer("", "", "", "", "")
-                        End If
-                    End If
-                End If
+                '                    'jika input qty 0 tampilkan deskripsi sebelumnya
+                '                    If ClientArrival.SO.QTYInput = "0" Then
+                'NEXT_QTY:
+                '                        If lokasi_so = "Toko" Then
+                '                            If tabel_name.ToUpper.Contains("SP") Then
+                '                                HH_Display = TampilDeskripsiClient(ClientArrival.SO.BarcodePlu, ClientArrival.SO.Deskripsi, ClientArrival.SO.Rak, ClientArrival.SO.QTYToko, ClientArrival.SO.QTYCom)
+                '                                Server_Display = TampilDeskripsiServer(ClientArrival.SO.BarcodePlu, ClientArrival.SO.Deskripsi, ClientArrival.SO.Rak, ClientArrival.SO.QTYToko, ClientArrival.SO.QTYCom)
+                '                            Else
+                '                                HH_Display = TampilDeskripsiClient(ClientArrival.SO.BarcodePlu, ClientArrival.SO.Deskripsi, ClientArrival.SO.Rak, ClientArrival.SO.QTYToko, ClientArrival.SO.QTYCom)
+                '                                Server_Display = TampilDeskripsiServer(ClientArrival.SO.BarcodePlu, ClientArrival.SO.Deskripsi, ClientArrival.SO.Rak, "", ClientArrival.SO.QTYCom)
+                '                            End If
+                '                        ElseIf lokasi_so = "Gudang" Then
+                '                            HH_Display = TampilDeskripsiClient(ClientArrival.SO.BarcodePlu, ClientArrival.SO.Deskripsi, ClientArrival.SO.Rak, ClientArrival.SO.QTYGudang, ClientArrival.SO.QTYCom)
+                '                            Server_Display = TampilDeskripsiServer(ClientArrival.SO.BarcodePlu, ClientArrival.SO.Deskripsi, ClientArrival.SO.Rak, "", ClientArrival.SO.QTYCom)
+                '                        Else
+                '                            HH_Display = TampilClientSOICTTL3(ClientArrival.SO.BarcodePlu, ClientArrival.SO.Deskripsi, ClientArrival.SO.qtyReturExpired, ClientArrival.SO.qtyReturKemasan, ClientArrival.SO.qtyReturDigigit)
+                '                            Server_Display = TampilServerSOICTTL3(ClientArrival.SO.BarcodePlu, ClientArrival.SO.Deskripsi, ClientArrival.SO.qtyReturExpired, ClientArrival.SO.qtyReturKemasan, ClientArrival.SO.qtyReturDigigit)
+                '                        End If
+                '                    Else
+                '                        If tabel_name.ToUpper.Contains("SP") Then
+                '                            HH_Display = TampilDeskripsiClient("", "", "", "", "")
+                '                            Server_Display = TampilDeskripsiServer("", "", "", "", "")
+                '                        Else
+                '                            HH_Display = TampilDeskripsiClient("", "", "", "", "")
+                '                            Server_Display = TampilDeskripsiServer("", "", "", "", "")
+                '                        End If
+                '                    End If
+                '                End If
                 Log &= vbCrLf & "Q - Input QTY - 2" & vbCrLf
                 Log &= ClientArrival.IpAddress & " | " & ClientArrival.SocketID & " | PRDCD: " & ClientArrival.SO.PRDCD & " | QTY " & ClientArrival.SO.QTYInput & vbCrLf
             ElseIf Strings.Right(SocketData, 1) = "C" Then 'Jika melakukan input scan barcode container
@@ -1037,11 +1039,12 @@ NEXT_QTY:
                 Dim BarcodeBox As String = cUtility.BrcdKontainerOrBronjong(SocketData.Substring(0, SocketData.Length - 1))
                 Box1 = 0
                 Box2 = 0
-                DtBPB_DCP = cBPB.CekPluContainer(BarcodeBox, CbxKodeGudang.SelectedValue, Box1, Box2)
+                'DtBPB_DCP = cBPB.CekPluContainer(BarcodeBox, CbxKodeGudang.SelectedValue, Box1, Box2)
+                DtBPB_DCP = cBPB.CekPluContainer(BarcodeBox, "", Box1, Box2)
                 If Box1 > 0 Then
                     ClientArrival.SO = New ClsSo
                     ClientArrival.SO.NoContainer = BarcodeBox
-                    DisplayGridBPB(DtBPB_DCP)
+                    'DisplayGridBPB(DtBPB_DCP)
                     DescBPB = "Mulai scan barang"
                     For Each KdCbng As String In lCabang
                         If ClientArrival.SO.NoContainer.Contains(KdCbng) Then
@@ -1051,7 +1054,7 @@ NEXT_QTY:
                     Next
                     HH_Display = TampilContainerClient2(IsContainer, ClientArrival.SO.NoContainer, Box2 & "/" & Box1 & "Record", DescBPB)
                     Server_Display = TampilContainerServer(IsContainer, ClientArrival.SO.NoContainer, Box2 & "/" & Box1 & "Record", DescBPB)
-                    txtRec.Text = Box2 & "/" & Box1
+                    'txtRec.Text = Box2 & "/" & Box1
                 Else
                     ClientArrival.SO.NoContainer = ""
                     DescBPB = "Barcode tdk trdaftar"
@@ -1167,7 +1170,8 @@ NEXT_QTY:
 
                 If tabel_name.Trim.ToLower = "bpbbkl_wdcp" Then
 
-                    mBKL = cBPB.inputTGL_EPW(ClientArrival.SO.BarcodePlu, CbxKodeGudang.SelectedValue, ClientArrival.SO.QTYInput, ClientArrival.SO.Tgl_exp)
+                    'mBKL = cBPB.inputTGL_EPW(ClientArrival.SO.BarcodePlu, CbxKodeGudang.SelectedValue, ClientArrival.SO.QTYInput, ClientArrival.SO.Tgl_exp)
+                    mBKL = cBPB.inputTGL_EPW(ClientArrival.SO.BarcodePlu, "", ClientArrival.SO.QTYInput, ClientArrival.SO.Tgl_exp)
 
                     StatusEXP = mBKL.StatusExp
 
@@ -1188,7 +1192,8 @@ NEXT_QTY:
                     'DIRECT SHIPMENT MEMO 1029
                 ElseIf tabel_name.Trim.ToLower = "bpbnps_wdcp" Then
 
-                    mBPBNPS = cBPB.inputTGL_EPW_NPS(ClientArrival.SO.BarcodePlu, CbxKodeGudang.SelectedValue, ClientArrival.SO.QTYInput, ClientArrival.SO.Tgl_exp)
+                    'mBPBNPS = cBPB.inputTGL_EPW_NPS(ClientArrival.SO.BarcodePlu, CbxKodeGudang.SelectedValue, ClientArrival.SO.QTYInput, ClientArrival.SO.Tgl_exp)
+                    mBPBNPS = cBPB.inputTGL_EPW_NPS(ClientArrival.SO.BarcodePlu, "", ClientArrival.SO.QTYInput, ClientArrival.SO.Tgl_exp)
 
                     StatusEXP = mBPBNPS.StatusExp
 
@@ -1331,37 +1336,6 @@ NEXT_BIC:
         End Try
 
     End Sub
-
-    Private Sub DisplayGridBPB(ByVal DtBPB As DataTable)
-        If Me.DgBPB.InvokeRequired Then
-            Dim d As New DisplayGridBPBDelegate(AddressOf DisplayGridBPB)
-            Me.Invoke(d, New Object() {DtBPB})
-        Else
-            DtBPB.TableName = "boxplu"
-            Me.DgBPB.DataSource = DtBPB
-        End If
-    End Sub
-
-    Private Sub DisplayGridBPBBKL(ByVal DtBPBBKL As DataTable)
-        If Me.DgBPB.InvokeRequired Then
-            Dim d As New DisplayGridBPBBKLDelegate(AddressOf DisplayGridBPBBKL)
-            Me.Invoke(d, New Object() {DtBPBBKL})
-        Else
-            DtBPBBKL.TableName = "BPBBKL"
-            Me.DgBPB.DataSource = DtBPBBKL
-
-        End If
-    End Sub
-    Private Sub DisplayGridBPBNPS(ByVal DtBPBNPS As DataTable)
-        If Me.DgBPB.InvokeRequired Then
-            Dim d As New DisplayGridBPBNPSDelegate(AddressOf DisplayGridBPBNPS)
-            Me.Invoke(d, New Object() {DtBPBNPS})
-        Else
-            DtBPBNPS.TableName = "BPBNPS"
-            Me.DgBPB.DataSource = DtBPBNPS
-
-        End If
-    End Sub
     Public Sub SendData(ByVal SocketID As String, ByVal tmpData As String)
         Try
             'Dim util As New Utility
@@ -1403,8 +1377,8 @@ NEXT_BIC:
 
     Public Sub InitialClient()
         If jenis_so = "BPB" Or jenis_so = "BPBBKL" Or jenis_so = "BPBNPS" Then
-            ShowIpAddress = AddressOf showIpClient2
-            ShowDisplayClient = AddressOf showDisplayBPB
+            'ShowIpAddress = AddressOf showIpClient2
+            'ShowDisplayClient = AddressOf showDisplayBPB
         ElseIf jenis_so = "Planogram" Or jenis_so = "Kesegaran" Or jenis_so = "CekPJR" Or jenis_so = "TINDAKLBTD" Or jenis_so = "TINDAKLBTD_BAPJR" Or jenis_so = "CekDisplay" Then
             ShowIpAddress = AddressOf showIpClient3
             ShowDisplayClient = AddressOf showDisplayPlano
@@ -1447,34 +1421,6 @@ NEXT_BIC:
                 Handheld8_box.Text = display
             Else
                 Handheld9_box.Text = display
-            End If
-        Catch ex As Exception
-            ShowError("Error showdisplay", ex)
-        End Try
-    End Sub
-
-    Public Sub showDisplayBPB(ByVal client_no As Integer, ByVal display As String)
-        Try
-            'Dim util As New Utility
-            'util.TraceLogTxt("showDisplayBPB " & vbCrLf & "client_no:" & client_no & " | display:" & display)
-
-            'tambahan 6/10/20
-            If jenis_so = "BPBBKL" Or jenis_so = "BPBNPS" Then
-                If client_no = 0 Then
-                    DCP1_box.Text = display
-                ElseIf client_no = 1 Then
-                    DCP2_box.Text = display
-                ElseIf client_no = 2 Then
-                    DCP3_box.Text = display
-                Else
-                    DCP4_box.Text = display
-                End If
-            Else
-                If client_no = 0 Then
-                    DCP1_box.Text = display
-                Else
-                    DCP2_box.Text = display
-                End If
             End If
         Catch ex As Exception
             ShowError("Error showdisplay", ex)
@@ -1563,32 +1509,6 @@ NEXT_BIC:
                 Handheld8.Text = ipadrs
             Else
                 Handheld9.Text = ipadrs
-            End If
-        Catch ex As Exception
-            ShowError("Error ShowIPClient", ex)
-        End Try
-
-    End Sub
-
-    Public Sub showIpClient2(ByVal client_no As Integer, ByVal ipadrs As String)
-        Try
-            'tambahan 6/10/20
-            If jenis_so = "BPBBKL" Or jenis_so = "BPBNPS" Then
-                If client_no = 0 Then
-                    DCP1.Text = ipadrs
-                ElseIf client_no = 1 Then
-                    DCP2.Text = ipadrs
-                ElseIf client_no = 2 Then
-                    DCP3.Text = ipadrs
-                Else
-                    DCP4.Text = ipadrs
-                End If
-            Else
-                If client_no = 0 Then
-                    DCP1.Text = ipadrs
-                Else
-                    DCP2.Text = ipadrs
-                End If
             End If
         Catch ex As Exception
             ShowError("Error ShowIPClient", ex)
@@ -4475,13 +4395,13 @@ NEXT_BIC:
             If IsNothing(VarTbl) Or IsDBNull(VarTbl) Then
                 MsgBox("Table " & tabel_name & " Tidak Tersedia!!")
 
-                BtnCekPB.Text = "MULAI"
-                CbxKodeGudang.Enabled = True
+                'BtnCekPB.Text = "MULAI"
+                'CbxKodeGudang.Enabled = True
 
-                BtnCariPlu.Enabled = False
-                BtnSplitCtn.Enabled = False
-                txtLokasi.Text = ""
-                txtPlu.Text = ""
+                'BtnCariPlu.Enabled = False
+                'BtnSplitCtn.Enabled = False
+                'txtLokasi.Text = ""
+                'txtPlu.Text = ""
                 Exit Sub
             End If
 
@@ -4493,17 +4413,17 @@ NEXT_BIC:
 
                 'DtBPB_DCP = cBPB.GetTableCekPB(kodeDC)
                 DtBPB_DCP.TableName = "boxplu"
-                DgBPB.DataSource = DtBPB_DCP
+                'DgBPB.DataSource = DtBPB_DCP
 
                 If DtBPB_DCP.Rows.Count = 0 Then
                     MsgBox("Tidak Tersedia Data untuk Cek BPB" & vbCrLf & "atau Cek BPB hari ini sudah selesai", MsgBoxStyle.Information)
-                    BtnCekPB.Text = "MULAI"
-                    CbxKodeGudang.Enabled = True
+                    'BtnCekPB.Text = "MULAI"
+                    'CbxKodeGudang.Enabled = True
 
-                    BtnCariPlu.Enabled = False
-                    BtnSplitCtn.Enabled = False
-                    txtLokasi.Text = ""
-                    txtPlu.Text = ""
+                    'BtnCariPlu.Enabled = False
+                    'BtnSplitCtn.Enabled = False
+                    'txtLokasi.Text = ""
+                    'txtPlu.Text = ""
                     Exit Sub
                 End If
                 'PROGRAM CEK BARANG BISA PILIH PER DOCNO (NO NPB) - 438/03-23/E/PMO
@@ -4542,23 +4462,23 @@ NEXT_BIC:
                 'Dus2 = Integer.Parse(cUtility.ExecuteScalar("SELECT Count(distinct dus_no) FROM Dcp_Boxplu " _
                 '                                           & "WHERE KIRIM = '" & kodeDC & "'"))
 
-                txtRec.Text = Brg & "/" & Brg2
-                txtCont.Text = Dus & "/" & Dus2
+                'txtRec.Text = Brg & "/" & Brg2
+                'txtCont.Text = Dus & "/" & Dus2
 
             ElseIf tabel_name = "BPBBKL_WDCP" Then
                 DtBPBBKL_DCP = cBPB.GetTableCekPBBKL(kodeDC, parameter_docno)
                 DtBPBBKL_DCP.TableName = "BPBBKL"
 
-                DgBPB.DataSource = DtBPBBKL_DCP
+                'DgBPB.DataSource = DtBPBBKL_DCP
                 If DtBPBBKL_DCP.Rows.Count = 0 Then
                     MsgBox("Tidak Tersedia Data untuk Cek BPB BKL" & vbCrLf & "atau Cek BPB BKL hari ini sudah selesai", MsgBoxStyle.Information)
-                    BtnCekPB.Text = "MULAI"
-                    CbxKodeGudang.Enabled = True
+                    'BtnCekPB.Text = "MULAI"
+                    'CbxKodeGudang.Enabled = True
 
-                    BtnCariPlu.Enabled = False
-                    BtnSplitCtn.Enabled = False
-                    txtLokasi.Text = ""
-                    txtPlu.Text = ""
+                    'BtnCariPlu.Enabled = False
+                    'BtnSplitCtn.Enabled = False
+                    'txtLokasi.Text = ""
+                    'txtPlu.Text = ""
                     Exit Sub
                 End If
 
@@ -4566,23 +4486,23 @@ NEXT_BIC:
                                                      & "WHERE tgl_bpbw IS NULL AND FINISHW IS NULL"))
                 Brg2 = Integer.Parse(cUtility.ExecuteScalar("SELECT Count(*) FROM BPBBKL_WDCP "))
 
-                txtRec.Text = Brg & "/" & Brg2
-                txtCont.Text = "-"
+                'txtRec.Text = Brg & "/" & Brg2
+                'txtCont.Text = "-"
                 'DIRECT SHIPMENT
             ElseIf tabel_name.ToLower = "bpbnps_wdcp" Then
                 DtBPBNPS = cBPB.GetTableCekPBNPS(parameter_noPO)
                 DtBPBNPS.TableName = "BPBNPS"
 
-                DgBPB.DataSource = DtBPBNPS
+                'DgBPB.DataSource = DtBPBNPS
                 If DtBPBNPS.Rows.Count = 0 Then
                     MsgBox("Tidak Tersedia Data untuk Cek BPB NPS" & vbCrLf & "atau Cek BPB NPS hari ini sudah selesai", MsgBoxStyle.Information)
-                    BtnCekPB.Text = "MULAI"
-                    CbxKodeGudang.Enabled = True
+                    'BtnCekPB.Text = "MULAI"
+                    'CbxKodeGudang.Enabled = True
 
-                    BtnCariPlu.Enabled = False
-                    BtnSplitCtn.Enabled = False
-                    txtLokasi.Text = ""
-                    txtPlu.Text = ""
+                    'BtnCariPlu.Enabled = False
+                    'BtnSplitCtn.Enabled = False
+                    'txtLokasi.Text = ""
+                    'txtPlu.Text = ""
                     Exit Sub
                 End If
 
@@ -4590,17 +4510,17 @@ NEXT_BIC:
                                                      & "WHERE tgl_bpbw IS NULL AND FINISHW IS NULL"))
                 Brg2 = Integer.Parse(cUtility.ExecuteScalar("SELECT Count(*) FROM BPBNPS_WDCP "))
 
-                txtRec.Text = Brg & "/" & Brg2
-                txtCont.Text = "-"
+                'txtRec.Text = Brg & "/" & Brg2
+                'txtCont.Text = "-"
             End If
 
             _socketManager.Start()
-            DCP1_box.Enabled = True
-            DCP2_box.Enabled = True
+            'DCP1_box.Enabled = True
+            'DCP2_box.Enabled = True
             '6/10/20
             If jenis_so = "BPBBKL" Or jenis_so = "BPBNPS" Then
-                DCP3_box.Enabled = True
-                DCP4_box.Enabled = True
+                'DCP3_box.Enabled = True
+                'DCP4_box.Enabled = True
             End If
         Catch ex As Exception
             MsgBox(ex.Message & vbCrLf & ex.StackTrace)
@@ -4612,16 +4532,7 @@ NEXT_BIC:
         lblIpServer.Top = 580
         lblAppVersion.Top = 580
 
-        'tambahan 6/10/20 KHUSUS BPB BKL
-        DCP3_box.Visible = False
-        DCP4_box.Visible = False
-        DCP3.Visible = False
-        DCP4.Visible = False
-        PictureBox1.Location = New Point(393, 52)
-        Label2.Location = New Point(454, 284)
-        txtRec.Location = New Point(349, 284)
         Me.Width = 559
-        gbxDCP.Width = 508
 
         Label5.Visible = True
         cmbShelfTo.Visible = True
@@ -4635,15 +4546,9 @@ NEXT_BIC:
 
         If menu = "SO" Then
             GbxHandheld.Visible = True
-            gbxLihatSO.Visible = False
-            gbxDCP.Visible = False
-            GbxPilihGudang.Visible = False
             gbxPlanogram.Visible = False
         ElseIf menu = "CekPJR" Then
             GbxHandheld.Visible = False
-            gbxLihatSO.Visible = False
-            gbxDCP.Visible = False
-            GbxPilihGudang.Visible = False
             gbxPlanogram.Visible = True
             gbxPlanogram.Location = New Point(21, 102)
 
@@ -4666,15 +4571,10 @@ NEXT_BIC:
             Label9.Text = "No.Shelf"
 
 
-            DCP1.Text = "IP="
-            DCP2.Text = "IP="
             Plano1_Box.Enabled = False
             Plano2_Box.Enabled = False
         ElseIf menu = "TINDAKLBTD" Then
             GbxHandheld.Visible = False
-            gbxLihatSO.Visible = False
-            gbxDCP.Visible = False
-            GbxPilihGudang.Visible = False
             gbxPlanogram.Visible = True
             gbxPlanogram.Location = New Point(21, 102)
 
@@ -4697,16 +4597,11 @@ NEXT_BIC:
             Label9.Text = "No.Shelf"
 
 
-            DCP1.Text = "IP="
-            DCP2.Text = "IP="
             Plano1_Box.Enabled = False
             Plano2_Box.Enabled = False
 
         ElseIf menu = "TINDAKLBTD_BAPJR" Then
             GbxHandheld.Visible = False
-            gbxLihatSO.Visible = False
-            gbxDCP.Visible = False
-            GbxPilihGudang.Visible = False
             gbxPlanogram.Visible = True
             gbxPlanogram.Location = New Point(21, 102)
 
@@ -4728,9 +4623,6 @@ NEXT_BIC:
             Label6.Text = "No.Rak"
             Label9.Text = "No.Shelf"
 
-
-            DCP1.Text = "IP="
-            DCP2.Text = "IP="
             Plano1_Box.Enabled = False
             Plano2_Box.Enabled = False
         End If
@@ -5435,7 +5327,7 @@ NEXT_BIC:
                     End If
                 Else
 
-                    MessageBox.Show("Object class client WDCP is nothing!", "Selesai" & " LGG2194", MessageBoxButtons.OK,
+                    MessageBox.Show("Object class client PJR is nothing!", "Selesai" & " LGG2194", MessageBoxButtons.OK,
                                  MessageBoxIcon.Information, MessageBoxDefaultButton.Button1)
                     btnOk.Text = "Mulai Scan"
                     cmbModis.SelectedIndex = -1
@@ -5855,4 +5747,5 @@ NEXT_BIC:
             MsgBox(ex.Message & vbCrLf & ex.StackTrace)
         End Try
     End Sub
+
 End Class
